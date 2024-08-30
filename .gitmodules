@@ -1,0 +1,3 @@
+[submodule "ethernaut/lib/forge-std"]
+	path = ethernaut/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std

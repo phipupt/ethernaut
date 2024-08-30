@@ -1,0 +1,7 @@
+ETHEREUM_RPC_URL=https://eth.llamarpc.com
+SEPOLIA_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
+
+PRIVATE_KEY=
+
+ETHERSCAN_API_KEY=
+
