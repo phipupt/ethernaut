@@ -2,7 +2,7 @@
 
 ## level 3
 
-The Ethernaut level 3
+[The Ethernaut level 3](https://ethernaut.openzeppelin.com/level/0xA62fE5344FE62AdC1F356447B669E9E6D10abaaF)
 
 这一关的要求是在一次投币游戏中通过猜测投币的结果连续正确10次。
 
@@ -24,7 +24,7 @@ The Ethernaut level 3
 
 ## level 4
 
-The Ethernaut level 4
+[The Ethernaut level 4](https://ethernaut.openzeppelin.com/level/0x2C2307bb8824a0AbBf2CC7D76d8e63374D2f8446)
 
 这一关的要求是获得合约的owner权限。
 
@@ -45,7 +45,7 @@ The Ethernaut level 4
 
 ## level 5
 
-The Ethernaut level 5
+[The Ethernaut level 5](https://ethernaut.openzeppelin.com/level/0x478f3476358Eb166Cb7adE4666d04fbdDB56C407)
 
 这一关要求获得更多的token。
 
@@ -76,9 +76,9 @@ cast send <level address> \
 - receiver: 0x5859FdBE15be13b4413F0E5F96Ce27364F6E21C8
 
 
-## level 06
+## level 6
 
-The Ethernaut level 6
+[The Ethernaut level 6](https://ethernaut.openzeppelin.com/level/0x73379d8B82Fda494ee59555f333DF7D44483fD58)
 
 这一关要求获得 `Delegation` 合约的 `owner` 权限
 
@@ -120,7 +120,7 @@ cast call <level address> \
 - 获取权限的交易的哈希: [0xa74c34ac10570535f2faa6b86677a3a2c5799783fac5bfe874c3cbbf9d27c3b2](https://sepolia.etherscan.io/tx/0xa74c34ac10570535f2faa6b86677a3a2c5799783fac5bfe874c3cbbf9d27c3b2)
 
 
-## lelve 07
+## lelve 7
 
 [The Ethernaut level 7](https://ethernaut.openzeppelin.com/level/0xb6c2Ec883DaAac76D8922519E63f875c2ec65575)
 
