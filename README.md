@@ -1,7 +1,10 @@
 # ethernaut
 
 ## level 3
-这个挑战要求在一次投币游戏中通过猜测投币的结果连续正确10次。
+
+The Ethernaut level 3
+
+这一关的要求是在一次投币游戏中通过猜测投币的结果连续正确10次。
 
 为了在连续猜对10次，必须预测 `blockValue`，并在调用 `flip` 函数时提供正确的 `_guess` 参数。
 
@@ -21,7 +24,9 @@
 
 ## level 4
 
-Ethernaut的第4关要求获得合约的owner权限。
+The Ethernaut level 4
+
+这一关的要求是获得合约的owner权限。
 
 要获得owner权限，需要调用 `changeOwner` 方法，但条件是 `tx.origin != msg.sender`。
 
@@ -39,9 +44,10 @@ Ethernaut的第4关要求获得合约的owner权限。
 
 
 ## level 5
+
 The Ethernaut level 5
 
-第 5 关要求获得更多的token。
+这一关要求获得更多的token。
 
 合约看起来没什么问题，但是 solidity 版本用的是是 0.6，没有处理整型的下溢/溢出。
 
@@ -72,7 +78,7 @@ cast send <level address> \
 
 ## level 06
 
-The Ethernaut level 5
+The Ethernaut level 6
 
 这一关要求获得 `Delegation` 合约的 `owner` 权限
 
