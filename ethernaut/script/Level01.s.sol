@@ -26,8 +26,6 @@ contract Attacker {
 }
 
 contract CallContractScript is Script {
-    // 假设合约已经部署在这个地址
-
     function run() external {
         // 指定私钥，可以从环境变量中获取，例如：process.env.PRIVATE_KEY
         uint256 privateKey = vm.envUint("PRIVATE_KEY");
