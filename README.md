@@ -1,8 +1,55 @@
 # ethernaut
 
+## level1
+
+[The Ethernaut level 1](https://ethernaut.openzeppelin.com/level/1)
+
+在 sepolia 重新部署了一个 level01 的 `Fallback` [合约](https://sepolia.etherscan.io/address/0xF6a32a802127712efAAED091Fa946492460Cb703#code)。
+
+写了一个攻击合约去实现所有功能，攻击合约在[这里](ethernaut/script/Level01.s.sol)。  
+具体实现逻辑：
+1. 先给攻击合约一定数量的 ether，用于调用 `Fallback` 合约时发送 ether
+2. 调用 `attack` 方法，该方法调用 `Fallback` 合约的 `contribute` 方法，存入一笔资金。再直接发送 1 wei 给 `Fallback` 合约，从而获取 `owner` 权限。
+3. 最后再调用 `Fallback` 合约的 `withdraw` 方法（此时已经具有 `owner` 权限），成功提取所有资金
+
+![示例代码](Writeup/phipupt/ethernaut/level01.png)
+
+
+## level1
+[The Ethernaut level 2](https://ethernaut.openzeppelin.com/level/2)
+
+这道题的构造函数是 `Fal1out`，合约名叫 `Fallout`。不仔细检查，完全看不出来区别。
+
+本题想考的知识点应该是：在 Solidity 0.4.22 之前，可以使用与合约同名的函数作为构造函数。从 Solidity 0.4.22 开始，应使用 `constructor` 关键字。
+
+因此，破解这题没什么难度。“构造”函数并没有被执行，合约部署后 `owner` 没有被赋值，为默认值 `0x`。只要调用 `Fal1out` 函数即可获得 `owner` 权限。
+
+下面是使用 Foundry 的 cast 命令去调用智能合约：
+
+（新部署的 `Fallout` 合约，[地址](https://sepolia.etherscan.io/address/0x6c178efb9F79C13f88618F82Dee359025F3C8F71)）
+
+合约部署后调用合约的 `owner` 方法，返回 `0x0000000000000000000000000000000000000000`。
+```
+cast call \
+0x6c178efb9F79C13f88618F82Dee359025F3C8F71  "owner()(address)"  \
+--rpc-url sepolia
+```
+
+调用 `Fal1out` 函数，获取 `owner` 权限。[交易哈希](https://sepolia.etherscan.io/tx/0xa5733b6b05d9bf1d444e55abda842a3e862df4d4a24c4475a97379d5463157fa)
+```
+cast send \
+0x6c178efb9F79C13f88618F82Dee359025F3C8F71  "Fal1out()()"  \
+--value 10000000000 \
+--rpc-url sepolia \
+--private-key <private key>
+```
+
+再次调用上面的 `owner` 方法，返回发送者地址 `0x3EBA4347974cF00b7ba130797e5DbfAB33D8Ef4b`。
+
+
 ## level 3
 
-[The Ethernaut level 3](https://ethernaut.openzeppelin.com/level/0xA62fE5344FE62AdC1F356447B669E9E6D10abaaF)
+[The Ethernaut level 3](https://ethernaut.openzeppelin.com/level/3)
 
 这一关的要求是在一次投币游戏中通过猜测投币的结果连续正确10次。
 
@@ -24,7 +71,7 @@
 
 ## level 4
 
-[The Ethernaut level 4](https://ethernaut.openzeppelin.com/level/0x2C2307bb8824a0AbBf2CC7D76d8e63374D2f8446)
+[The Ethernaut level 4](https://ethernaut.openzeppelin.com/level/4)
 
 这一关的要求是获得合约的owner权限。
 
@@ -45,7 +92,7 @@
 
 ## level 5
 
-[The Ethernaut level 5](https://ethernaut.openzeppelin.com/level/0x478f3476358Eb166Cb7adE4666d04fbdDB56C407)
+[The Ethernaut level 5](https://ethernaut.openzeppelin.com/level/5)
 
 这一关要求获得更多的token。
 
@@ -78,7 +125,7 @@ cast send <level address> \
 
 ## level 6
 
-[The Ethernaut level 6](https://ethernaut.openzeppelin.com/level/0x73379d8B82Fda494ee59555f333DF7D44483fD58)
+[The Ethernaut level 6](https://ethernaut.openzeppelin.com/level/6)
 
 这一关要求获得 `Delegation` 合约的 `owner` 权限
 
@@ -122,7 +169,7 @@ cast call <level address> \
 
 ## lelve 7
 
-[The Ethernaut level 7](https://ethernaut.openzeppelin.com/level/0xb6c2Ec883DaAac76D8922519E63f875c2ec65575)
+[The Ethernaut level 7](https://ethernaut.openzeppelin.com/level/7)
 
 这一关的要求是增加 `Forece` 合约的 ether 余额
 
@@ -166,7 +213,7 @@ cast balance 0xd2E4Ba00684F3d61D585ca344ec566e03FA06F47 --rpc-url sepolia
 
 ## lelve 8
 
-[The Ethernaut level 8](https://ethernaut.openzeppelin.com/level/0xB7257D8Ba61BD1b3Fb7249DCd9330a023a5F3670)
+[The Ethernaut level 8](https://ethernaut.openzeppelin.com/level/8)
 
 这一关的要求是反转 `Vault` 的 `locked` 状态
 
@@ -204,7 +251,7 @@ cast call 0x2a27021Aa2ccE6467cDc894E6394152fA8867fB4 \
 
 ## lelve 9
 
-[The Ethernaut level 9]()
+[The Ethernaut level 9](https://ethernaut.openzeppelin.com/level/9)
 
 这一关的要求是结束这个庞氏游戏。
 
@@ -297,7 +344,7 @@ cast send <level address> \
 
 ## lelve 10
 
-[The Ethernaut level 10](https://ethernaut.openzeppelin.com/level/0x2a24869323C0B13Dff24E196Ba072dC790D52479)
+[The Ethernaut level 10](https://ethernaut.openzeppelin.com/level/10)
 
 这一关的要求是获取合约里所有的资金。
 
@@ -372,7 +419,7 @@ cast balance <address> --rpc-url sepolia
 
 ## lelve 11
 
-[The Ethernaut level 11](https://ethernaut.openzeppelin.com/level/0x6DcE47e94Fa22F8E2d8A7FDf538602B1F86aBFd2)
+[The Ethernaut level 11](https://ethernaut.openzeppelin.com/level/11)
 
 这一关的要求是让电梯合约达到顶楼。
 
@@ -445,7 +492,7 @@ cast call 0x5B0424701F6f9a8e27CF76DAfC918A5E558f0Dc5 \
 
 ## lelve 12
 
-[The Ethernaut level 12](https://ethernaut.openzeppelin.com/level/0x131c3249e115491E83De375171767Af07906eA36)
+[The Ethernaut level 12](https://ethernaut.openzeppelin.com/level/12)
 
 这一关的要求是解锁 `Privacy` 合约。
 
