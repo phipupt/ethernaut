@@ -1,0 +1,6 @@
+[book]
+authors = ["phipupt"]
+language = "en"
+multilingual = false
+src = "src"
+title = "勇闯 Ethernaut"
