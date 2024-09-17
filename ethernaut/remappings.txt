@@ -1,1 +1,3 @@
-openzeppelin-contracts-06/=lib/openzeppelin-contracts-06
+openzeppelin-contracts/=lib/openzeppelin-contracts/contracts
+openzeppelin-contracts-06/=lib/openzeppelin-contracts-06/contracts
+openzeppelin-contracts-05/=lib/openzeppelin-contracts-05/contracts
