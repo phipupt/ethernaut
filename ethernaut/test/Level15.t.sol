@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {Test, console} from "forge-std/Test.sol";
-import {NaughtCoin} from "../src/level15/NaughtCoin.sol";
+import {NaughtCoin} from "../src/Level15.sol";
 
 contract Attacker is Test {
     NaughtCoin level;
