@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Denial} from "../src/level19.sol";
-import {Attacker} from "../script/level19.s.sol";
+import {Denial} from "../src/Level20.sol";
+import {Attacker} from "../script/Level20.s.sol";
 
 contract TestContract is Test {
     Denial public level;

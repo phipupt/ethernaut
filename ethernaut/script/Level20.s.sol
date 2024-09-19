@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {Script} from "forge-std/Script.sol";
-import {Denial} from "../src/level19.sol";
+import {Denial} from "../src/Level20.sol";
 
 contract Attacker {
     uint256 counter = 0;
