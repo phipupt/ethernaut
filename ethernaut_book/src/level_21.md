@@ -1,4 +1,4 @@
-# Level 20
+# Level 21
 
 [The Ethernaut level 21](https://ethernaut.openzeppelin.com/level/21)
 
